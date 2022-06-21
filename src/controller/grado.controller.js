@@ -8,13 +8,13 @@ const postGrado = async (req, res) => {
 
         if (idGrado === undefined || Grado === undefined) {
             res.status(400).json(new ResponseError("Solicitud incorrecta. Complete todos los campos."));
+        }else{
+            const connection = await getConnection();
+            await connection.query(`INSERT INTO Grado VALUES (${idGrado}, '${Grado}')`);
+            res.status(200).json(new BaseResponse(
+                "Grado", 
+                "Se agregó grado academico"));
         }
-
-        const connection = await getConnection();
-        await connection.query(`INSERT INTO Grado VALUES (${idGrado}, '${Grado}')`);
-        res.status(200).json(new BaseResponse(
-            "Grado", 
-            "Se agregó grado academico"));
     } catch (error) {
         res.status(500).json(new ResponseError(
             "Error al agregar un grado academico",

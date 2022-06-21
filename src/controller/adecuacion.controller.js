@@ -8,13 +8,14 @@ const postAdecuacion = async (req, res) => {
 
         if (idAdecuacion === undefined || Tipo_adecuacion === undefined) {
             res.status(400).json(new ResponseError("Solicitud incorrecta. Complete todos los campos."));
+        }else{
+            const connection = await getConnection();
+            await connection.query(`INSERT INTO Adecuacion VALUES (${idAdecuacion}, '${Tipo_adecuacion}')`);
+            res.status(200).json(new BaseResponse(
+                "Adecuacion", 
+                "Se agregó una adecuacion"));
         }
-
-        const connection = await getConnection();
-        await connection.query(`INSERT INTO Adecuacion VALUES (${idAdecuacion}, '${Tipo_adecuacion}')`);
-        res.status(200).json(new BaseResponse(
-            "Adecuacion", 
-            "Se agregó una adecuacion"));
+        
     } catch (error) {
         res.status(500).json(new ResponseError(
             "Error al agregar una adecuacion",
