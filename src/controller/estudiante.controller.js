@@ -4,8 +4,9 @@ import ResponseError from "../response/responseError";
 
 const getEstudiantes = async (req, res) => {
     try {
+        const { cedula } = req.body;
         const connection = await getConnection();
-        const result = await connection.query("SELECT idPersonaje, Persona_idPersona, Recibe_Religion, modalidad, Adecuacion_idAdecuacion, Grado_idGrado, seccion_idseccion, tiene_internet, repitente, observaciones FROM Estudiante");
+        const result = await connection.query("SELECT e.*, p.* FROM Estudiante e, Persona p WHERE p.cedula = ? and p.idPersona = e.Persona_idPersona", cedula);
         res.status(200).json(new BaseResponse(
             "Estudiantes",
             "Estudiantes obtenidos",
@@ -21,9 +22,9 @@ const getEstudiantes = async (req, res) => {
 
 const getEstudianteId = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { cedula } = req.body.cedula;
         const connection = await getConnection();
-        const result = await connection.query("SELECT idPersonaje, Persona_idPersona, Recibe_Religion, modalidad, Adecuacion_idAdecuacion, Grado_idGrado, seccion_idseccion, tiene_internet, repitente, observaciones FROM Estudiante WHERE idPersonaje = ?", id);
+        const result = await connection.query("SELECT e.idPersonaje, e.Persona_idPersona, e.Recibe_Religion, e.modalidad, e.Adecuacion_idAdecuacion, e.Grado_idGrado, e.seccion_idseccion, e.tiene_internet, e.repitente, e.observaciones, p.cedula, p.Nombre FROM Estudiante e, Persona p WHERE p.cedula = ? and p.idPersona = e.Persona_idPersona", cedula);
         res.status(200).json(new BaseResponse(
             "Estudiante",
             "Estudiante obtenido",
@@ -61,16 +62,15 @@ const postEstudiante = async (req, res) => {
 
 const updateEstudiante = async (req, res) => {
     try {
-        const { idPersonaje, Persona_idPersona, Recibe_Religion, modalidad, Adecuacion_idAdecuacion, Grado_idGrado, seccion_idseccion, tiene_internet, repitente, observaciones } = req.body;
+        let { idPersonaje, Persona_idPersona, Recibe_Religion, modalidad, Adecuacion_idAdecuacion, Grado_idGrado, seccion_idseccion, tiene_internet, repitente, observaciones, idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion } = req.body;
 
         if (idPersonaje === undefined) {
             res.status(400).json(new ResponseError("Solicitud incorrecta. Complete todos los campos."));
         }else{
             const connection = await getConnection();
-            const query = await connection.query(`SELECT idPersonaje, Persona_idPersona, Recibe_Religion, modalidad, Adecuacion_idAdecuacion, Grado_idGrado, seccion_idseccion, tiene_internet, repitente, observaciones FROM Estudiante WHERE idPersonaje = ${idPersonaje}`);
+            const query = await connection.query(`SELECT e.*, p.* FROM Estudiante e, Persona p WHERE e.Persona_idPersona = p.idPersona and idPersonaje = ${idPersonaje}`);
             const estudiante = query[0];
     
-            idPersonaje = (idPersonaje === undefined) ? estudiante.idPersonaje : idPersonaje; // If de una sola línea se realiza la comparación ? true : false
             Persona_idPersona = (Persona_idPersona === undefined) ? estudiante.Persona_idPersona : Persona_idPersona;
             Recibe_Religion = (Recibe_Religion === undefined) ? estudiante.Recibe_Religion : Recibe_Religion;
             modalidad = (modalidad === undefined) ? estudiante.modalidad : modalidad;
@@ -80,8 +80,22 @@ const updateEstudiante = async (req, res) => {
             tiene_internet = (tiene_internet === undefined) ? estudiante.tiene_internet : tiene_internet;
             repitente = (repitente === undefined) ? estudiante.repitente : repitente;
             observaciones = (observaciones === undefined) ? estudiante.observaciones : observaciones;
+
+            idPersona = (idPersona === undefined) ? estudiante.idPersona : idPersona;
+            Nombre = (Nombre === undefined) ? estudiante.Nombre : Nombre;
+            Apel1 = (Apel1 === undefined) ? estudiante.Apel1 : Apel1;
+            Apel2 = (Apel2 === undefined) ? estudiante.Apel2 : Apel2;
+            cedula = (cedula === undefined) ? estudiante.cedula : cedula;
+            email = (email === undefined) ? estudiante.email : email;
+            Roll_idRol = (Roll_idRol === undefined) ? estudiante.Roll_idRol : Roll_idRol;
+            contacto = (contacto === undefined) ? estudiante.contacto : contacto;
+            nacionalidad = (nacionalidad === undefined) ? estudiante.nacionalidad : nacionalidad;
+            edad = (edad === undefined) ? estudiante.edad : edad;
+            genero = (genero === undefined) ? estudiante.genero : genero;
+            sexo = (sexo === undefined) ? estudiante.sexo : sexo;
+            Direccion_id_Direccion = (Direccion_id_Direccion === undefined) ? estudiante.Direccion_id_Direccion : Direccion_id_Direccion;
     
-            const result = await connection.query(`UPDATE Estudiante SET idPersonaje = ${idPersonaje}, Recibe_Religion = '${Recibe_Religion}', modalidad = '${modalidad}', Adecuacion_idAdecuacion = ${Adecuacion_idAdecuacion}, Grado_idGrado = ${Grado_idGrado}, seccion_idseccion = ${seccion_idseccion}, repitente = '${repitente}', observaciones = '${observaciones}', WHERE idPersonaje = ${idPersonaje};`);
+            const result = await connection.query(`UPDATE Estudiante e, Persona p SET e.idPersonaje = ${idPersonaje}, e.Recibe_Religion = '${Recibe_Religion}', e.modalidad = '${modalidad}', e.Adecuacion_idAdecuacion = ${Adecuacion_idAdecuacion}, e.Grado_idGrado = ${Grado_idGrado}, e.seccion_idseccion = ${seccion_idseccion}, e.repitente = '${repitente}', e.observaciones = '${observaciones}', p.idPersona = ${idPersona}, p.Nombre = '${Nombre}', p.Apel1 = '${Apel1}', p.Apel2 = '${Apel2}', p.cedula = '${cedula}', p.email = '${email}',  p.Roll_idRol = ${Roll_idRol},  p.contacto = '${contacto}', p.nacionalidad = '${nacionalidad}', p.edad = '${edad}', p.genero = '${genero}', p.sexo = '${sexo}', p.Direccion_id_Direccion = ${Direccion_id_Direccion} WHERE e.Persona_idPersona = p.Persona_idPersona and e.idPersonaje = ${idPersonaje};`);
     
             res.status(200).json(new BaseResponse(
                 "Estudiante", 

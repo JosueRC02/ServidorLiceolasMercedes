@@ -21,3 +21,20 @@ Content-Type: application/json
 "nacionalidad": "tico",
 "sexo": "Masculino"
 }
+
+###
+GET http://localhost:4000/api/estudiante
+Content-Type: application/json
+
+{
+    "cedula":"sdfs"
+}
+
+###
+PUT http://localhost:4000/api/estudiante
+Content-Type: application/json
+
+{
+"idPersonaje": 1,
+"cedula": "hgjhg"
+}

@@ -39,13 +39,13 @@ const getPersonasId = async (req, res) => {
 
 const postPersona = async (req, res) => {
     try {
-        const { idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion } = req.body;
+        const { Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion } = req.body;
 
-        if (idPersona === undefined || Nombre === undefined || Apel1 === undefined || Apel2 === undefined || cedula === undefined || email === undefined || Roll_idRol === undefined || contacto === undefined || nacionalidad === undefined || edad === undefined || genero === undefined || sexo === undefined || Direccion_id_Direccion === undefined) {
+        if ( Nombre === undefined || Apel1 === undefined || Apel2 === undefined || cedula === undefined || email === undefined || Roll_idRol === undefined || contacto === undefined || nacionalidad === undefined || edad === undefined || genero === undefined || sexo === undefined || Direccion_id_Direccion === undefined) {
             res.status(400).json(new ResponseError("Solicitud incorrecta. Complete todos los campos."));
         }else{
             const connection = await getConnection();
-            await connection.query(`INSERT INTO Persona VALUES (${idPersona}, '${Nombre}', '${Apel1}', '${Apel2}', '${cedula}', '${email}', ${Roll_idRol}, '${contacto}', '${nacionalidad}', '${edad}', '${genero}', '${sexo}', ${Direccion_id_Direccion})`);
+            await connection.query(`INSERT INTO Persona VALUES (${null}, '${Nombre}', '${Apel1}', '${Apel2}', '${cedula}', '${email}', ${Roll_idRol}, '${contacto}', '${nacionalidad}', '${edad}', '${genero}', '${sexo}', ${Direccion_id_Direccion})`);
             res.status(200).json(new BaseResponse(
                 "Personas", 
                 "Se agregó la persona"));
@@ -61,7 +61,7 @@ const postPersona = async (req, res) => {
 
 const updatePersona = async (req, res) => {
     try {
-        const { idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion } = req.body;
+        let { idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion } = req.body;
 
         if (idPersona === undefined) {
             res.status(400).json(new ResponseError("Solicitud incorrecta. Complete todos los campos."));
@@ -70,7 +70,6 @@ const updatePersona = async (req, res) => {
             const query = await connection.query(`SELECT idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion FROM Persona WHERE idPersona = ${idPersona}`);
             const persona = query[0];
     
-            idPersona = (idPersona === undefined) ? persona.idPersona : idPersona; // If de una sola línea se realiza la comparación ? true : false
             Nombre = (Nombre === undefined) ? persona.Nombre : Nombre;
             Apel1 = (Apel1 === undefined) ? persona.Apel1 : Apel1;
             Apel2 = (Apel2 === undefined) ? persona.Apel2 : Apel2;
@@ -84,7 +83,7 @@ const updatePersona = async (req, res) => {
             sexo = (sexo === undefined) ? persona.sexo : sexo;
             Direccion_id_Direccion = (Direccion_id_Direccion === undefined) ? persona.Direccion_id_Direccion : Direccion_id_Direccion;
     
-            const result = await connection.query(`UPDATE Persona SET idPersona = ${idPersona}, Nombre = '${Nombre}', Apel1 = '${Apel1}', cedula = ${cedula}, email = ${email}, Roll_idRol = ${Roll_idRol}, contacto = '${contacto}', nacionalidad = '${nacionalidad}', edad = '${edad}', genero = '${genero}', sexo = '${sexo}', Direccion_id_Direccion = '${Direccion_id_Direccion}', WHERE idPersona = ${idPersona};`);
+            const result = await connection.query(`UPDATE Persona SET idPersona = ${idPersona}, Nombre = '${Nombre}', Apel1 = '${Apel1}', Apel2 = '${Apel2}', cedula = ${cedula}, email = ${email}, Roll_idRol = ${Roll_idRol}, contacto = '${contacto}', nacionalidad = '${nacionalidad}', edad = '${edad}', genero = '${genero}', sexo = '${sexo}', Direccion_id_Direccion = '${Direccion_id_Direccion}', WHERE idPersona = ${idPersona};`);
     
             res.status(200).json(new BaseResponse(
                 "Persona", 
