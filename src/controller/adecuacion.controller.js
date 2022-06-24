@@ -2,26 +2,28 @@ import { getConnection } from "../database/ConexionDB";
 import BaseResponse from "../response/baseResponse";
 import ResponseError from "../response/responseError";
 
-
-const addReporte = async (req, res) => {
+const postAdecuacion = async (req, res) => {
     try {
-        const { idReporte, cod_Reporte, Reportecol } = req.body;
+        const { idAdecuacion, Tipo_adecuacion } = req.body;
 
-        if (idReporte === undefined || cod_Reporte === undefined || Reportecol === undefined) {
+        if (idAdecuacion === undefined || Tipo_adecuacion === undefined) {
             res.status(400).json(new ResponseError("Solicitud incorrecta. Complete todos los campos."));
         }else{
             const connection = await getConnection();
-            await connection.query(`INSERT INTO reporte VALUES (${idReporte}, '${cod_Reporte}', '${Reportecol}')`);
-            res.status(200).json(new BaseResponse("Reporte", "Se agregó el reporte"));
+            await connection.query(`INSERT INTO Adecuacion VALUES (${idAdecuacion}, '${Tipo_adecuacion}')`);
+            res.status(200).json(new BaseResponse(
+                "Adecuacion", 
+                "Se agregó una adecuacion"));
         }
+        
     } catch (error) {
         res.status(500).json(new ResponseError(
-            "Error al agregar el reporte",
+            "Error al agregar una adecuacion",
             error.message
         ))
     }
 };
 
 export const methods = {
-    addReporte
+    postAdecuacion
 };

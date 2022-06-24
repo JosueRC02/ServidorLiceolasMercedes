@@ -1,0 +1,23 @@
+###
+POST http://localhost:4000/api/persona
+Content-Type: application/json
+
+{
+"Nombre": "kendall", 
+"Apel1": "granados", 
+"Apel2": "barrantes", 
+"cedula": "1175207",
+"Apel1": "granados",
+"Apel2": "barrantes",
+"Direccion_id_Direccion":1,
+"Nombre": "kendall",
+"Roll_idRol":1,
+"cedula": "1175207",
+"contacto": "86342267",
+"edad":22,
+"email": "kendall24gb@gmail.com",
+"genero": "Masculino",
+"idPersona": 11,
+"nacionalidad": "tico",
+"sexo": "Masculino"
+}
