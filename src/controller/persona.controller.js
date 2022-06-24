@@ -94,7 +94,7 @@ const updatePersona = async (req, res) => {
         
     } catch (error) {
         res.status(500).json(new ResponseError(
-            "Error al actualizar la persona",
+            "Error al actualizar la persona en la base de datos",
             error.message
         ))
     }
