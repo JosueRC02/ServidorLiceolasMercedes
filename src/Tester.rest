@@ -17,7 +17,6 @@ Content-Type: application/json
 "edad":22,
 "email": "kendall24gb@gmail.com",
 "genero": "Masculino",
-"idPersona": 11,
 "nacionalidad": "tico",
 "sexo": "Masculino"
 }
