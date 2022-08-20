@@ -9,11 +9,11 @@ const postSeccion = async (req, res) => {
         if (idseccion === undefined || seccion === undefined) {
             res.status(400).json(new ResponseError("Solicitud incorrecta. Complete todos los campos."));
         }else{
-            const connection = await getConnection();
-            await connection.query(`INSERT INTO Grado VALUES (${idseccion}, '${seccion}')`);
-            res.status(200).json(new BaseResponse(
-                "Seccion", 
-                "Se agregó una seccion"));
+            // const connection = await getConnection();
+            // await connection.query(`INSERT INTO Grado VALUES (${idseccion}, '${seccion}')`);
+            // res.status(200).json(new BaseResponse(
+            //     "Seccion", 
+            //     "Se agregó una seccion"));
         }
     } catch (error) {
         res.status(500).json(new ResponseError(
