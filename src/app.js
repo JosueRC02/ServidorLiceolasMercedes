@@ -19,7 +19,7 @@ app.use(cors())
 // Routes
 app.use("/api/reporte", reporteRoutes);
 app.use("/api/estudiante", estudianteRoutes);
-app.use("/api/persona", personaRoutes);
+app.use("/api/persona", personaRoutes); 
 app.use("/api/adecuacion", adecuacionRoutes);
 app.use("/api/grado", gradoRoutes);
 app.use("/api/seccion", seccionRoutes);

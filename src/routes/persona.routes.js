@@ -3,10 +3,11 @@ import { methods as personaController } from "./../controller/persona.controller
 
 const router = Router();
 
-router.get("/", personaController.getPersonas);
-router.get("/:id", personaController.getPersonasId);
+//router.get("/", personaController.getPersonas);
+//router.get("/:id", personaController.getPersonasId);
 router.post("/", personaController.postPersona);
 router.put("/", personaController.updatePersona);
-router.delete("/:id", personaController.deletePersona);
+router.delete("/:id",personaController.deletePersona);
+router.get("/login",personaController.Login);
 
 export default router;

@@ -2,40 +2,56 @@ import { getConnection } from "../database/ConexionDB";
 import BaseResponse from "../response/baseResponse";
 import ResponseError from "../response/responseError";
 
-const getPersonas = async (req, res) => {
+const Login = async (req, res) => {
+    console.log(req.headers);
+    let pass = req.headers.pass;
+    let user = req.headers.user;
     try {
-        const connection = await getConnection();
-        const result = await connection.query("SELECT idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion FROM Persona");
-        res.status(200).json(new BaseResponse(
-            "Personas",
-            "Personas obtenidas",
-            result
-            ));
-    } catch (error) {
-        res.status(400).json(new ResponseError(
-            "Error al obtener las personas",
-            error.message
-        ));
+       let result = pass === 'admin' && user === 'admin';
+        res.status(200).json(new BaseResponse(result));
     }
-};
+    catch (error) {
+        res.status(500).json(new ResponseError(
+            "Error en LogIn",
+            error.message
+        ))
+    }
+}
 
-const getPersonasId = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const connection = await getConnection();
-        const result = await connection.query("SELECT idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion FROM Persona WHERE idPersona = ?", id);
-        res.status(200).json(new BaseResponse(
-            "Personas",
-            "Personas obtenidas",
-            result
-            ));
-    } catch (error) {
-        res.status(400).json(new ResponseError(
-            "Error al obtener las personas",
-            error.message
-        ));
-    }
-};
+// const getPersonas = async (req, res) => {
+//     try {
+//         const connection = await getConnection();
+//         const result = await connection.query("SELECT idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion FROM Persona");
+//         res.status(200).json(new BaseResponse(
+//             "Personas",
+//             "Personas obtenidas",
+//             result
+//             ));
+//     } catch (error) {
+//         res.status(400).json(new ResponseError(
+//             "Error al obtener las personas",
+//             error.message
+//         ));
+//     }
+// };
+
+// const getPersonasId = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const connection = await getConnection();
+//         const result = await connection.query("SELECT idPersona, Nombre, Apel1, Apel2, cedula, email, Roll_idRol, contacto, nacionalidad, edad, genero, sexo, Direccion_id_Direccion FROM Persona WHERE idPersona = ?", id);
+//         res.status(200).json(new BaseResponse(
+//             "Personas",
+//             "Personas obtenidas",
+//             result
+//             ));
+//     } catch (error) {
+//         res.status(400).json(new ResponseError(
+//             "Error al obtener las personas",
+//             error.message
+//         ));
+//     }
+// };
 
 const postPersona = async (req, res) => {
     try {
@@ -117,9 +133,10 @@ const deletePersona = async (req, res) => {
 };
 
 export const methods = {
-    getPersonas,
-    getPersonasId,
+   // getPersonas,
+   // getPersonasId,
     postPersona,
     updatePersona,
-    deletePersona
+    deletePersona,
+    Login
 };

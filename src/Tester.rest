@@ -38,3 +38,9 @@ Content-Type: application/json
 "idPersonaje": 1,
 "cedula": "hgjhg"
 }
+
+###
+GET http://localhost:4000/api/persona/login
+Content-Type: application/json
+pass:admin
+user:admin
