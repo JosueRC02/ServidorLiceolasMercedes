@@ -9,11 +9,11 @@ const addReporte = async (req, res) => {
 
         if (idReporte === undefined || cod_Reporte === undefined || Reportecol === undefined) {
             res.status(400).json(new ResponseError("Solicitud incorrecta. Complete todos los campos."));
+        }else{
+            // const connection = await getConnection();
+            // await connection.query(`INSERT INTO reporte VALUES (${idReporte}, '${cod_Reporte}', '${Reportecol}')`);
+            // res.status(200).json(new BaseResponse("Reporte", "Se agregó el reporte"));
         }
-
-        const connection = await getConnection();
-        await connection.query(`INSERT INTO reporte VALUES (${idReporte}, '${cod_Reporte}', '${Reportecol}')`);
-        res.status(200).json(new BaseResponse("Reporte", "Se agregó el reporte"));
     } catch (error) {
         res.status(500).json(new ResponseError(
             "Error al agregar el reporte",
