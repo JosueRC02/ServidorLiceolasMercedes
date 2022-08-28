@@ -1,24 +1,18 @@
 import app from './app'
 import { config } from "dotenv";
+import dotenv from "dotenv";
 import mongoose from 'mongoose';
+import './database/ConexionDB';
 
-config();
 
-const connection = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@sandbox.1g67y.mongodb.net/Liceo_las_Mercedes?retryWrites=true&w=majority`
+mongoose.connection.on("disconnected", () => {
+    console.log("mongoDB disconnected");
+})
 
-const connect = async () => {
-    try {
-        await mongoose.connect(connection);
-        console.log("Connected to MongoDB")
-    } catch (error) {
-        throw error;
-    }
-};
+mongoose.connection.on("connected", () => {
+    console.log("mongoDB connected");
+})
 
-const main = () => {
-    app.listen(process.env.PORT);
-    console.log('Server listen on port', process.env.PORT);
-    connect();
-};
-
-main();
+app.listen(process.env.PORT, () => {
+    console.log("Connected to backed.");
+});

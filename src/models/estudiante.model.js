@@ -8,16 +8,18 @@ const EstudianteSchema = new mongoose.Schema({
     Nombre: String,
     Nivel: String,
     Seccion: String,
-    Adecuacion: String,
+    Adecuacion: Boolean,
     Cursolectivo: String,
-    RecibeReligión: String,
-    RepiteCursoLectivo: String,
-    CuentaconbeneficiodeBeca: String,
+    RecibeReligión: Boolean,
+    RepiteCursoLectivo: Boolean,
+    CuentaconbeneficiodeBeca: Boolean,
     Institucióndeprocedencia: String,
-    PoseeDispositivosElectrónicos: String,
-    TieneConectividad: String,
-    Estado: String,
+    PoseeDispositivosElectrónicos: Boolean,
+    TieneConectividad: Boolean,
+    Estado: Boolean,
     Modalidad: String
+}, {
+    versionKey: false
 });
 
 export default mongoose.model("Alumnos", EstudianteSchema);

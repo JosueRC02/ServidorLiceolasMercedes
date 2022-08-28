@@ -1,25 +1,23 @@
 ###
-POST http://localhost:4000/api/persona
+POST http://localhost:4000/api/estudiantes/crearEstudiante
 Content-Type: application/json
 
 {
-"Nombre": "kendall", 
-"Apel1": "granados", 
-"Apel2": "barrantes", 
-"cedula": "1175207",
-"Apel1": "granados",
-"Apel2": "barrantes",
-"Direccion_id_Direccion":1,
-"Nombre": "kendall",
-"Roll_idRol":1,
-"cedula": "1175207",
-"contacto": "86342267",
-"edad":22,
-"email": "kendall24gb@gmail.com",
-"genero": "Masculino",
-"idPersona": 11,
-"nacionalidad": "tico",
-"sexo": "Masculino"
+"PrimerApellido": "kendall", 
+"SegundoApellido": "Granados", 
+"Nombre": "Kendall", 
+"Nivel": "Noveno",
+"Seccion":"9-2",
+"Adecuacion": false,
+"Cursolectivo":"2018",
+"RecibeReligión": true,
+"RepiteCursoLectivo": true,
+"CuentaconbeneficiodeBeca":true,
+"Institucióndeprocedencia": "Pedregal",
+"PoseeDispositivosElectrónicos": true,
+"TieneConectividad": false,
+"Estado": true,
+"Modalidad": "Presencial"
 }
 
 ###
@@ -40,7 +38,4 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:4000/api/persona/login
-Content-Type: application/json
-pass:admin
-user:admin
+GET http://localhost:4000/api/estudiantes/62f33754162cbe1de9cbe278
