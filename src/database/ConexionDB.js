@@ -3,7 +3,8 @@ import { config } from "dotenv";
 
 config();
 
-const connection = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@sandbox.1g67y.mongodb.net/?retryWrites=true&w=majority`
+const connection = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@apicolegio.zxn3r9y.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`
+
 mongoose
     .connect(connection, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
