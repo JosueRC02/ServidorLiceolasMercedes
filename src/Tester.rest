@@ -5,6 +5,7 @@ Content-Type: application/json
 {
 "PrimerApellido": "kendall", 
 "SegundoApellido": "Granados", 
+"Ceduladeidentidad": "123",
 "Nombre": "Kendall", 
 "Nivel": "Noveno",
 "Seccion":"9-2",
