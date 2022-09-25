@@ -1,0 +1,38 @@
+
+//Crear
+###
+POST http://localhost:4000/api/encargado/
+Content-Type: application/json
+
+{
+"cedula": "345734567",
+"direccion": "sld394msdf",
+"observaciones": "sddfsdf",
+"escolaridad": "primaria",
+"estado_civil": "casado",
+"vive_con_estudiante": true,
+"relacion_estudiante": "Madre"
+}
+
+//Get
+###
+GET http://localhost:4000/api/encargado/632fb009085bee27bb60353e
+
+//Get All
+###
+GET http://localhost:4000/api/encargado/
+
+
+//Eliminar
+###
+DELETE http://localhost:4000/api/encargado/632fb009085bee27bb60353e
+
+
+//Update
+###
+PUT http://localhost:4000/api/encargado/632fb005085bee27bb60353c
+Content-Type: application/json
+
+{
+ "escolaridad": "secundaria"
+}

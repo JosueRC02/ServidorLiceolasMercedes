@@ -6,7 +6,7 @@ const HorarioDiaSchema = new mongoose.Schema({
     dia: String,
     entrada: String,
     salida: String,
-    semana_horario: ObjectId
+    semana_horario: String
 }, {
     versionKey: false,
     timestamps: true

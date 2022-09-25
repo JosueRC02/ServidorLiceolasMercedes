@@ -10,7 +10,7 @@ const EstudianteSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    direccion: ObjectId,
+    direccion: String,
     nivel: String,
     seccion: String,
     adecuacion: Boolean,
@@ -25,10 +25,10 @@ const EstudianteSchema = new mongoose.Schema({
     tiene_conectividad: Boolean,
     estado: Boolean,
     modalidad: String,
-    encargado_legal: ObjectId
+    encargado_legal: String
 }, {
     versionKey: false,
     timestamps: true
 });
 
-export default mongoose.model("Alumnos", EstudianteSchema);
+export default mongoose.model("Estudiante", EstudianteSchema);

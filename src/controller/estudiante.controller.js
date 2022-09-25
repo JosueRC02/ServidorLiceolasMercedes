@@ -23,3 +23,34 @@ export const getEstudianteId = async (req, res, next) => {
         next(err);
     }
 };
+
+
+export const updateEstudiante = async (req, res, next) => {
+
+    try {
+        const updateEstudiante = await Estudiante.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+        res.status(200).json(updateEstudiante);
+    } catch (err) {
+        next(err);
+    }
+}
+
+export const deleteEstudiante = async (req, res, next) => {
+
+    try {
+        await Estudiante.findByIdAndDelete(req.params.id, { $set: req.body });
+        res.status(200).json("Estudiante eliminado correctamente.");
+    } catch (err) {
+        next(err);
+    }
+}
+
+
+export const getEstudiantes = async (req, res, next) => {
+    try {
+        const estudiantes = await Estudiante.find();
+        res.status(200).json(estudiantes);
+    } catch (err) {
+        next(err);
+    }
+}

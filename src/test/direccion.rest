@@ -1,0 +1,34 @@
+
+//Crear
+###
+POST http://localhost:4000/api/direccion/
+Content-Type: application/json
+
+{
+"distrito": "Pejibaye",
+"barrio": "sdj73sfidef",
+"descripcion_ubic": "siodf3sdjfs"
+}
+
+//Get
+###
+GET http://localhost:4000/api/direccion/632fac84671dae9f20197dd5
+
+//Get All
+###
+GET http://localhost:4000/api/direccion/
+
+
+//Eliminar
+###
+DELETE http://localhost:4000/api/direccion/632fac84671dae9f20197dd5
+
+
+//Update
+###
+PUT http://localhost:4000/api/direccion/632fac8f671dae9f20197dd7
+Content-Type: application/json
+
+{
+ "barrio": "888777"
+}
