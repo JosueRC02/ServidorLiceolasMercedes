@@ -1,0 +1,46 @@
+
+//Crear
+###
+POST http://localhost:4000/api/personal/
+Content-Type: application/json
+
+{
+"nombre": "Pedro",
+"cedula": "89068899",
+"primer_apellido": "Fernandez",
+"segundo_apellido": "Solado",
+"email": "pedro@gmail.com",
+"genero": "Masculino",
+"sexo": "hombre",
+"puesto": "Secretario",
+"horario_interno": "nsdf9834fhsdf",
+"guia": "sdfds",
+"telefono": "89704355",
+"sindicato": "Ande",
+"nombramiento": "Si",
+"direccion": "sm833dsdfds",
+"semana_horario": "dn834bwef"
+}
+
+//Get
+###
+GET http://localhost:4000/api/personal/632fb60ad716ffaaf98fc2d1
+
+//Get All
+###
+GET http://localhost:4000/api/personal/
+
+
+//Eliminar
+###
+DELETE http://localhost:4000/api/personal/632fb2762ae3057679023003
+
+
+//Update
+###
+PUT http://localhost:4000/api/personal/632fb633d716ffaaf98fc2d5
+Content-Type: application/json
+
+{
+ "email": "hola@gmail.com"
+}

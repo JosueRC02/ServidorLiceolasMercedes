@@ -1,0 +1,51 @@
+
+//Crear
+###
+POST http://localhost:4000/api/estudiante/
+Content-Type: application/json
+
+{
+"nombre": "Reynr",
+"primer_apellido": "Badilla",
+"segundo_apellido": "Arias",
+"cedula_identidad": "117860022",
+"direccion": "23wefs345345",
+"nivel": "Octavo",
+"seccion": "8-1",
+"adecuacion": false,
+"curso_lectivo": "2021",
+"recibe_religion": true,
+"repitente":  false,
+"beca_transporte": true,
+"beca_comedor": true,
+"beca_IMAS": true,
+"institucion_procedencia": "Liceo San Antonio",
+"posee_disp_electronicos": true,
+"tiene_conectividad": false,
+"estado": true,
+"modalidad": "Presencial",
+"encargado_legal": "asj43jsdjfis"
+}
+
+//Get
+###
+GET http://localhost:4000/api/estudiante/632fa2e02572fa7db8e663e8
+
+//Get All
+###
+GET http://localhost:4000/api/estudiante/
+
+
+//Eliminar
+###
+DELETE http://localhost:4000/api/estudiante/632fa2e02572fa7db8e663e8
+
+
+//Update
+###
+PUT http://localhost:4000/api/estudiante/632faa888e173023d3ce5f3c
+Content-Type: application/json
+
+{
+ "nombre": "Reyner"
+}
