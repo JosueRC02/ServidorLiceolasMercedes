@@ -5,13 +5,13 @@ POST http://localhost:4000/api/estudiante/
 Content-Type: application/json
 
 {
-"nombre": "Reynr",
-"primer_apellido": "Badilla",
-"segundo_apellido": "Arias",
-"cedula_identidad": "117860022",
+"nombre": "Andres",
+"primer_apellido": "Perez",
+"segundo_apellido": "Guevara",
+"cedula_identidad": "118906755",
 "direccion": "23wefs345345",
 "nivel": "Octavo",
-"seccion": "8-1",
+"seccion": "8-2",
 "adecuacion": false,
 "curso_lectivo": "2021",
 "recibe_religion": true,
@@ -49,3 +49,11 @@ Content-Type: application/json
 {
  "nombre": "Reyner"
 }
+
+//GetByCedula
+###
+GET http://localhost:4000/api/estudiante/cedula/118906755
+
+//GetBySeccion
+###
+GET http://localhost:4000/api/estudiante/seccion/118906755

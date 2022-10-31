@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getEstudianteId, createEstudiante, deleteEstudiante, getEstudiantes, updateEstudiante } from "./../controller/estudiante.controller";
+import { getEstudianteId, createEstudiante, deleteEstudiante, getEstudiantes, updateEstudiante, findBySeccion, findByCedula } from "./../controller/estudiante.controller";
 
 const router = Router();
 
@@ -8,5 +8,7 @@ router.post("/", createEstudiante);
 router.delete("/:id", deleteEstudiante);
 router.get("/", getEstudiantes);
 router.put("/:id", updateEstudiante);
+router.get("/cedula/:id", findByCedula);
+router.get("/seccion/:id", findBySeccion);
 
 export default router;
