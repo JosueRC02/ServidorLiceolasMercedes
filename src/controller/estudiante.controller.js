@@ -3,7 +3,6 @@ import Estudiante from "../models/estudiante.model.js";
 
 
 export const createEstudiante = async (req, res, next) => {
-
     const newEstudiante = new Estudiante(req.body);
 
     try {

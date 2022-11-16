@@ -5,13 +5,14 @@ POST http://localhost:4000/api/estudiante/
 Content-Type: application/json
 
 {
-"nombre": "Andres",
-"primer_apellido": "Perez",
-"segundo_apellido": "Guevara",
-"cedula_identidad": "118906755",
+<<<<<<< Updated upstream
+"nombre": "Reynr",
+"primer_apellido": "Badilla",
+"segundo_apellido": "Arias",
+"cedula_identidad": "117860022",
 "direccion": "23wefs345345",
 "nivel": "Octavo",
-"seccion": "8-2",
+"seccion": "8-1",
 "adecuacion": false,
 "curso_lectivo": "2021",
 "recibe_religion": true,
@@ -25,6 +26,33 @@ Content-Type: application/json
 "estado": true,
 "modalidad": "Presencial",
 "encargado_legal": "asj43jsdjfis"
+=======
+    "nombre": "Pedro",
+    "primer_apellido": "Rosales",
+    "segundo_apellido": "Perez",
+    "cedula_identidad": "4756",
+    "fecha_nacimiento": "12-12-2022",
+    "edad": 45,
+    "nacionalidad": "Alemana",
+    "genero": "Masculinmo",
+    "sexo": "Hombre",
+    "direccion": "SA",
+    "nivel": "Setimo",
+    "seccion": "7-1",
+    "adecuacion": true,
+    "curso_lectivo": "2022",
+    "recibe_religion": true,
+    "beca_IMAS": true,
+    "estado": true,
+    "telefono": "879065343",
+    "correo_personal": "sdsd",
+    "correo_mep": "sdfsdf",
+    "numero1": "345345",
+    "numero2": "345",
+    "numero3": "969",
+    "alergia": "Chicongunya",
+    "tipo_sangre": "O negativo"
+>>>>>>> Stashed changes
 }
 
 //Get
@@ -49,11 +77,3 @@ Content-Type: application/json
 {
  "nombre": "Reyner"
 }
-
-//GetByCedula
-###
-GET http://localhost:4000/api/estudiante/cedula/118906755
-
-//GetBySeccion
-###
-GET http://localhost:4000/api/estudiante/seccion/118906755
