@@ -3,7 +3,6 @@ import Estudiante from "../models/estudiante.model.js";
 
 
 export const createEstudiante = async (req, res, next) => {
-
     const newEstudiante = new Estudiante(req.body);
 
     try {
@@ -49,6 +48,24 @@ export const deleteEstudiante = async (req, res, next) => {
 export const getEstudiantes = async (req, res, next) => {
     try {
         const estudiantes = await Estudiante.find();
+        res.status(200).json(estudiantes);
+    } catch (err) {
+        next(err);
+    }
+}
+
+export const findByCedula = async (req, res, next) => {
+    try {
+        const estudiante = await Estudiante.find({ cedula_identidad: req.params.id });
+        res.status(200).json(estudiante);
+    } catch (err) {
+        next(err);
+    }
+}
+
+export const findBySeccion = async (req, res, next) => {
+    try {
+        const estudiantes = await Estudiante.find({ seccion: req.params.id });
         res.status(200).json(estudiantes);
     } catch (err) {
         next(err);
